@@ -2,7 +2,7 @@
   <div id="app">
     <img :src="logo" alt="Logo" />
     <h1 v-if="username === ''">Loading.. please wait!</h1>
-    <h1 v-else>Hello there, is it {{ username }}</h1>
+    <h1 v-else>Hello there, I'm {{ username }}</h1>
   </div>
 </template>
 

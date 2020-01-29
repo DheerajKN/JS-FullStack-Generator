@@ -106,7 +106,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Vue with Webpack',
             template: './client/public/index.html',
-            favicon: './client/public/favicon.ico'
+            favicon: './client/public/favico.ico'
         })
     ]
 }
