@@ -20,19 +20,14 @@ module.exports = {
                 ],
             },
             {
-                test: /\.scss$/,
+                test: /\.s[ac]ss$/i,
                 use: [
+                    // Creates `style` nodes from JS strings
                     'vue-style-loader',
+                    // Translates CSS into CommonJS
                     'css-loader',
-                    'sass-loader'
-                ],
-            },
-            {
-                test: /\.sass$/,
-                use: [
-                    'vue-style-loader',
-                    'css-loader',
-                    'sass-loader?indentedSyntax'
+                    // Compiles Sass to CSS
+                    'sass-loader',
                 ],
             },
             {
