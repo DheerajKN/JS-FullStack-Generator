@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ReactImage from '../assets/react.png';
-import '../style.less';
+import '../style.css';
 
 export default class App extends Component {
 

@@ -26,7 +26,7 @@ module.exports = (argument, folderDirectory) => {
         } else {
             exec('npm i -D node-sass sass-loader')
         }
-        filePath = join(initialDirectory, 'App.js')
+        filePath = join(initialDirectory, 'components', 'Home.js')
         if (existsSync(filePath)) {
             readFile(filePath, 'utf8', (err, oldContent) => {
                 let newContent = oldContent.replace(/css(.*)/g, `${argument.style}'`);
