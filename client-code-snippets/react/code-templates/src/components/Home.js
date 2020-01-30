@@ -17,9 +17,9 @@ export default class App extends Component {
         const { username } = this.state;
         return (
             <div>
+                <img src={ReactImage} alt="react" style={{ height: '250px' }} />
                 {username ? <h1>{`Hello there, I'm ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
                 <Link to="/users">See More Users</Link>
-                <img src={ReactImage} alt="react" />
             </div>
         )
     }

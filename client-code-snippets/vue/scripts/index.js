@@ -4,7 +4,7 @@ const { existsSync, readFile, writeFile } = require('fs')
 module.exports = (argument, folderDirectory) => {
     shell.exec('npm init -y && npm i express vue')
     //Babel Dependencies
-    shell.exec('npm i -D @babel/core @babel/node @babel/preset-env babel-loader file-loader')
+    shell.exec('npm i -D babel-polyfill @babel/core @babel/node @babel/plugin-proposal-class-properties @babel/preset-env babel-loader file-loader')
     //Styling and Vue Loader Dependencies
     shell.exec('npm i -D vue-loader vue-template-compiler css-loader html-loader')
     //Webpack, Execution Dependencies
@@ -22,9 +22,9 @@ module.exports = (argument, folderDirectory) => {
     const acceptedStyles = ['sass', 'scss', 'less']
     if (acceptedStyles.includes(argument.style)) {
         if (argument.style === 'less') {
-            shell.exec('npm i less less-loader')
+            shell.exec('npm i -D less less-loader')
         } else {
-            shell.exec('npm i node-sass sass-loader ')
+            shell.exec('npm i -D node-sass sass-loader ')
         }
         filePath = join(initialDirectory, 'App.vue')
         if (existsSync(filePath)) {

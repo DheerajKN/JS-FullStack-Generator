@@ -22,9 +22,9 @@ module.exports = (argument, folderDirectory) => {
     const acceptedStyles = ['sass', 'scss', 'less']
     if (acceptedStyles.includes(argument.style)) {
         if (argument.style === 'less') {
-            exec('npm i less less-loader')
+            exec('npm i -D less less-loader')
         } else {
-            exec('npm i node-sass sass-loader')
+            exec('npm i -D node-sass sass-loader')
         }
         filePath = join(initialDirectory, 'App.js')
         if (existsSync(filePath)) {

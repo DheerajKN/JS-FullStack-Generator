@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
-    entry: './client/src/main.js',
+    entry: ['babel-polyfill', './client/src/main.js'],
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: 'build.js'
