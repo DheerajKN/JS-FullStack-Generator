@@ -11,7 +11,9 @@ const vueViewComponent = require('./client-code-snippets/vue/scripts/index.js')
 const reactViewComponent = require('./client-code-snippets/react/scripts/index.js')
 const expressServerComponent = require('./server-code-snippets/express/scripts/index.js')
 const expressAddResource = require('./server-code-snippets/express/scripts/generateResource.js')
-const expressUpdateRoute = require('./server-code-snippets/express/scripts/getFileAndUpdateContent.js')
+const expressUpdateRoute = require('./server-code-snippets/express/scripts/getRouteFileAndUpdateContent.js')
+const detectFrontEndProject = require('./client-code-snippets/frontend-helper-functions/detectFrontendProjectType')
+const reactAddResourceAndUpdateRoute = require('./client-code-snippets/react/scripts/updateRoute.js')
 
 const cdIntoApp = (appDirectory) => {
     return new Promise(resolve => {
@@ -39,16 +41,21 @@ if (folderName) {
     }
     expressServerComponent(arguement, join(appDirectory, 'server'))
 } else {
-    if (arguement.hasOwnProperty('resource')) {
-        expressUpdateRoute.updateRouteText(`${appDirectory}/server/src/routes/index.js`, arguement.resource)
-            .then(() => expressAddResource.createControllerAndService(appDirectory, arguement.resource))
-    }
-    if (arguement.hasOwnProperty('route')) {
-
-    }
-    if (arguement.hasOwnProperty('db')) {
-        if (arguement.hasOwnProperty('auth')) {
-
+    detectFrontEndProject(appDirectory).then(frontendProjectType => {
+        if (arguement.hasOwnProperty('resource')) {
+            expressUpdateRoute.updateRouteText(`${appDirectory}/server/src/routes/index.js`, arguement.resource)
+                .then(() => expressAddResource.createControllerAndService(appDirectory, arguement.resource))
         }
-    }
+        if (arguement.hasOwnProperty('route')) {
+            if (frontendProjectType === 'react') {
+                reactAddResourceAndUpdateRoute(appDirectory, arguement.route)
+            }
+            // updateFrontendRoute(appDirectory, arguement.route)
+        }
+        if (arguement.hasOwnProperty('db')) {
+            if (arguement.hasOwnProperty('auth')) {
+
+            }
+        }
+    })
 }
