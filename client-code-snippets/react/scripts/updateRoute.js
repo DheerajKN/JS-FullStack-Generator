@@ -16,7 +16,7 @@ module.exports = (projectDirectory, route) => {
 
     const routingFile = join(projectDirectory, 'client', 'src', 'components', 'Home.js')
     getFileContent.fetchContent(routingFile).then(oldContent => {
-        let newContent = oldContent.replace(/<Link to="\/users">See More Users<\/Link>/, `<Link to="/users">See More Users</Link>{" | "}\n                <Link to="/${pluralize(route)}">${pluralize(route)}</Link>{" | "}`);
+        let newContent = oldContent.replace(/<Link to="\/users">(.*)/, `<Link to="/users">See More Users</Link>{" | "}\n                <Link to="/${pluralize(route)}">${pluralize(route)}</Link>{" | "}`);
         newContent = newContent.replace(/<Route path="\/" exact component=(.*)/, `<Route path="/${pluralize(route)}" component={${capitalizedRoute}} />
         <Route path="/" exact component={Home} />`);
 

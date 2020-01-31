@@ -14,6 +14,8 @@ const expressAddResource = require('./server-code-snippets/express/scripts/gener
 const expressUpdateRoute = require('./server-code-snippets/express/scripts/getRouteFileAndUpdateContent.js')
 const detectFrontEndProject = require('./client-code-snippets/frontend-helper-functions/detectFrontendProjectType')
 const reactAddResourceAndUpdateRoute = require('./client-code-snippets/react/scripts/updateRoute.js')
+const dbComponent = require('./server-code-snippets/express/scripts/dbComponent')
+const authComponent = require('./server-code-snippets/express/scripts/authComponent')
 
 const cdIntoApp = (appDirectory) => {
     return new Promise(resolve => {
@@ -50,11 +52,11 @@ if (folderName) {
             if (frontendProjectType === 'react') {
                 reactAddResourceAndUpdateRoute(appDirectory, arguement.route)
             }
-            // updateFrontendRoute(appDirectory, arguement.route)
         }
         if (arguement.hasOwnProperty('db')) {
+            dbComponent.addDBComponent(appDirectory, folderName)
             if (arguement.hasOwnProperty('auth')) {
-
+                authComponent.addAuthComponent(appDirectory)
             }
         }
     })

@@ -29,13 +29,6 @@ Simple Express ES7 generator that creates
 
 > [inside-folder-where-boilerplate-is-created] \$ node express-view-generator/index.js --route=phone
 
-## NPM Commands
-
-- Development: `npm start` that runs view Component on webpack-dev-server for live reload and hot reload functionality in 3000 along with Express at 8080
-- Production: `npm run build` that runs view Component on Express Server at 8080
-
-## Other Functionality (in development)
-
 - --db: This would download mongoose and create initial setup files for connection with database along with sample user table with validation fields
 
 > [directory-where-you-want-create-boilerplate] \$ node express-view-generator/index.js <project-name> --db
@@ -43,3 +36,12 @@ Simple Express ES7 generator that creates
 - --auth: This would automatically create config files for authentication using JWT and uses created User table fields
 
 > [directory-where-you-want-create-boilerplate] \$ node express-view-generator/index.js <project-name> --db --auth
+
+## NPM Commands
+
+- Development: `npm start` that runs view Component on webpack-dev-server for live reload and hot reload functionality in 3000 along with Express at 8080
+- Production: `npm run build` that runs view Component on Express Server at 8080
+
+## Other Functionality (in development)
+
+- Routing Configuration for Vue.js yet to be developed.
