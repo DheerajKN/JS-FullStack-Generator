@@ -1,9 +1,10 @@
 # Express-View-Generator
-Simple Express ES7 generator that creates 
 
-    Model and Controller Part via Express Directly 
+Simple Express ES7 generator that creates
 
-    and 
+    Model and Controller Part via Express Directly
+
+    and
 
     Seperate View Component using React and Vue powered by Webpack through --view flag
 
@@ -13,10 +14,16 @@ Simple Express ES7 generator that creates
 
     [directory-where-you-want-create-boilerplate] $ node express-view-generator/index.js <project-name> --style=scss --view=react
 
-## Arguements
+## Arguements during creation
 
-- Style [Supported]: CSS, SASS, SCSS, LESS 
+- Style [Supported]: CSS, SASS, SCSS, LESS
 - View [Supported]: React.js, Vue.js
+
+## Functionalities that can be used after creation
+
+- --resource: This would create an entry in routes/index.js and create subsequent controller and service files.
+
+> [inside-folder-where-boilerplate-is-created] \$ node express-view-generator/index.js --resource=phone
 
 ## NPM Commands
 
@@ -25,9 +32,9 @@ Simple Express ES7 generator that creates
 
 ## Other Functionality (in development)
 
-- --resource: This would create an entry in routes/index.js and create subsequent controller and service files.
+- --route: This would create an entry in router and create file and mapping based on view file in client/src.
 
-> [inside-folder-where-boilerplate-is-created] \$ node express-view-generator/index.js --resource=phone
+> [inside-folder-where-boilerplate-is-created] \$ node express-view-generator/index.js --route=phone
 
 - --db: This would download mongoose and create initial setup files for connection with database along with sample user table with validation fields
 
