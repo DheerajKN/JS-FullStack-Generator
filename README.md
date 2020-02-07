@@ -45,3 +45,4 @@ Simple Express ES7 generator that creates
 ## Other Functionality (in development)
 
 - Routing Configuration for Vue.js yet to be developed.
+- Also Out of box support for Web Application using Electron.
