@@ -2,7 +2,7 @@ const shell = require('shelljs');
 const { join } = require('path');
 const { existsSync, readFile, writeFile } = require('fs')
 module.exports = (argument, folderDirectory) => {
-    shell.exec('npm init -y && npm i express vue')
+    shell.exec('npm init -y && npm i express vue vue-router')
     //Babel Dependencies
     shell.exec('npm i -D babel-polyfill @babel/core @babel/node @babel/plugin-proposal-class-properties @babel/preset-env babel-loader file-loader')
     //Styling and Vue Loader Dependencies
