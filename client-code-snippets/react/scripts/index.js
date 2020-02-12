@@ -9,6 +9,8 @@ module.exports = (argument, folderDirectory) => {
     exec('npm i -D css-loader style-loader html-loader file-loader')
     //Webpack, Execution Dependencies
     exec('npm i -D npm-run-all clean-webpack-plugin html-webpack-plugin nodemon  webpack webpack-dev-server webpack-cli')
+    //Electron Dependencies
+    exec('npm i electron-is-dev && npm i -D electron electron-builder concurrently cross-env wait-on')
 
     cp('-R', join(__dirname, '..', 'code-templates'), folderDirectory)
 
