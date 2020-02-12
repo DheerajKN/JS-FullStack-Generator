@@ -39,9 +39,8 @@ Simple Express ES7 generator that creates
 
 ## NPM Commands
 
-- Development: `npm start` that runs view Component on webpack-dev-server for live reload and hot reload functionality in 3000 along with Express at 8080
+- Development: `npm start` that runs view Component on webpack-dev-server for live reload and hot reload functionality in 3000 along with Electron App and Express at 8080
 - Production: `npm run build` that runs view Component on Express Server at 8080
+- Electron: Electron app will run along side react on dev mode but on Production it requires seperate command to execute `npm run build:electron`
 
 ## Other Functionality (in development)
-
-- Also Out of box support for Web Application using Electron.
