@@ -9,6 +9,8 @@ module.exports = (argument, folderDirectory) => {
     shell.exec('npm i -D vue-loader vue-template-compiler css-loader html-loader')
     //Webpack, Execution Dependencies
     shell.exec('npm i -D npm-run-all clean-webpack-plugin html-webpack-plugin nodemon webpack webpack-dev-server webpack-cli')
+    //Electron Dependencies
+    shell.exec('npm i electron-is-dev && npm i -D electron electron-builder concurrently cross-env wait-on')
 
     shell.cp('-R', join(__dirname, '..', 'code-templates'), folderDirectory)
 
