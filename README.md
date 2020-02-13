@@ -43,4 +43,8 @@ Simple Express ES7 generator that creates
 - Production: `npm run build` that runs view Component on Express Server at 8080
 - Electron: Electron app will run along side react on dev mode but on Production it requires seperate command to execute `npm run build:electron`
 
-## Other Functionality (in development)
+## Require Community's help
+
+- Unable to bundle up electron app for production. Using electron-builder and packaged application just shows blank screen.
+- Also electron-builder providing only platform-specific build rather than building across Operating Systems.
+- Also building webpack-test enviroment with some sample cases for React and Vue.

@@ -9,7 +9,7 @@ module.exports = (argument, folderDirectory) => {
         content = JSON.parse(content);
 
         content.main = "client/src/electron.js";
-        content.scripts['build:client'] = "webpack --watch --mode production";
+        content.scripts['build:client'] = "webpack --mode production";
         content.scripts['build:electron'] = "npm run build:client && electron-builder"
         content.scripts.start = "npm-run-all --parallel start:client start:electron server";
         content.scripts['start:client'] = "cross-env BROWSER=none webpack-dev-server --mode development --devtool inline-source-map --hot";
