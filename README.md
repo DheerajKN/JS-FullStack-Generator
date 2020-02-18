@@ -48,3 +48,7 @@ Simple Express ES7 generator that creates
 - Unable to bundle up electron app for production. Using electron-builder and packaged application just shows blank screen.
 - Also electron-builder providing only platform-specific build rather than building across Operating Systems.
 - Also building webpack-test enviroment with some sample cases for React and Vue.
+
+## Further Development
+
+- Create View with React Native for Web with Electron and Quasar for provide support to Web, Desktop and Apps.

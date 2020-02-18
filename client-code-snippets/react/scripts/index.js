@@ -8,7 +8,7 @@ module.exports = (argument, folderDirectory) => {
     //Styling Dependencies
     exec('npm i -D css-loader style-loader html-loader file-loader')
     //Webpack, Execution Dependencies
-    exec('npm i -D npm-run-all clean-webpack-plugin html-webpack-plugin nodemon  webpack webpack-dev-server webpack-cli')
+    exec('npm i -D npm-run-all clean-webpack-plugin html-webpack-plugin nodemon webpack-assets-manifest webpack webpack-dev-server webpack-cli')
     //Electron Dependencies
     exec('npm i electron-is-dev && npm i -D electron electron-builder concurrently cross-env wait-on')
 
@@ -19,6 +19,7 @@ module.exports = (argument, folderDirectory) => {
     const finalSet = moveThemToParent.map(file => join(initialDirectory, file))
 
     mv(finalSet, join(folderDirectory, '..'))
+
     cp(join(__dirname, '..', '..', 'styling', `style.${argument.style ? argument.style : 'css'}`), initialDirectory)
 
     const acceptedStyles = ['sass', 'scss', 'less']

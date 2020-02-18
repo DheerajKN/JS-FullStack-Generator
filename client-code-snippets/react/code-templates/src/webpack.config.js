@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
+const WebpackAssetsManifest = require('webpack-assets-manifest');
 const outputDirectory = 'dist';
 
 module.exports = {
@@ -67,6 +67,7 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin({ cleanAfterEveryBuildPatterns: ['dist'] }),
+        new WebpackAssetsManifest(),
         new HtmlWebpackPlugin({
             template: './client/public/index.html',
             favicon: './client/public/favico.ico'
