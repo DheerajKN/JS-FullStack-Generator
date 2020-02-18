@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const { cd } = require("shelljs");
 const mkdirp = require("mkdirp");
 const { join } = require("path");

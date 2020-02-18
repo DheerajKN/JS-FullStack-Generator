@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "Application that can create MERN and MEVN App along with css precompiler",
   "main": "index.js",
-  "further-enhancements": [
-    "JWT Config and subsequent middleware",
-    "Mongo Config, Sample Schema"
-  ],
+  "bin": {
+    "express-view-es7": "index.js"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "further-enhancements": [],
   "repository": {
     "type": "git",
     "url": "https://github.com/DheerajKN/Express-MVC-ES7"
@@ -21,8 +24,5 @@
     "mkdirp": "^1.0.3",
     "pluralize": "^8.0.0",
     "shelljs": "^0.8.3"
-  },
-  "bin": {
-    "express-es7-generator": "index.js"
   }
 }
