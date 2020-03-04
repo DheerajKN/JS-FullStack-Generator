@@ -47,12 +47,18 @@ Simple Express ES7 generator that creates
 - Production: `npm run build` that runs view Component on Express Server at 8080
 - Electron: Electron app will run along side react on dev mode but on Production it requires seperate command to execute `npm run build:electron`
 
+## Considerations
+
+- If you want to dispatch electron apps across MacOS, Windows, Linux go to `package.json` and update `build:electron` to `webpack --env.ELECTRON_PROD=true --mode production && electron-builder -mwl` and remember MacOS is possible with current executed OS is of Mac.
+- If you had to run `npm run build:electron` and `npm run build` it is advisable to follow this procedure:
+  - Open terminal execute: `npm run build:electron` and after it is completed delete the terminal, open new one and execute this: `npm run build` as there is `permission execute issue` occuring after `npm build:client`
+- If facing with `process cannot access the file` just close the ide, open it and delete build and dist folders and run the prev. command again.
+
 ## Require Community's help
 
-- Unable to bundle up electron app for production. Using electron-builder and packaged application just shows blank screen.
-- Also electron-builder providing only platform-specific build rather than building across Operating Systems.
+- Also electron-builder providing only platform-specific build rather than building apps across Operating Systems.
 - Also building webpack-test enviroment with some sample cases for React and Vue.
 
 ## Further Development
 
-- Create View with React Native for Web with Electron and Quasar for provide support to Web, Desktop and Apps.
+- --server option to build with Restify Server

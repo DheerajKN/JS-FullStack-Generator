@@ -6,3 +6,8 @@ body {
 h1 {
   color: #00b7ff;
 }
+
+img {
+  width: 256px;
+  height: 256px;
+}

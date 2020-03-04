@@ -19,7 +19,13 @@ export default {
     };
   },
   mounted() {
-    fetch("/api/addresses")
+    fetch(
+      `${
+        JSON.parse(process.env.ELECTRON_PROD)
+          ? "http://localhost:8080/api"
+          : "/api"
+      }/addresses`
+    )
       .then(res => res.json())
       .then(locations => (this.names = locations));
   }

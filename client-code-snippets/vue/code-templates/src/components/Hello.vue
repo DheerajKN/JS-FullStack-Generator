@@ -19,7 +19,13 @@ export default {
     };
   },
   mounted() {
-    fetch("/api/getUsername")
+    fetch(
+      `${
+        JSON.parse(process.env.ELECTRON_PROD)
+          ? "http://localhost:8080/api"
+          : "/api"
+      }/getUsername`
+    )
       .then(res => res.json())
       .then(user => (this.username = user.username));
   }

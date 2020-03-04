@@ -5,7 +5,7 @@ import routes from './routes';
 
 const app = express();
 
-app.use(express.static('dist'));
+app.use(express.static('build'));
 app.use(express.json())
 
 //  Connect all our routes to our application

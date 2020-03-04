@@ -43,7 +43,7 @@ if (folderName) {
     default:
       break;
   }
-  expressServerComponent(arguement, join(appDirectory, "server"));
+  expressServerComponent(arguement, folderName, join(appDirectory, "server"));
 } else {
   detectFrontEndProject(appDirectory).then(frontendProjectType => {
     if (arguement.hasOwnProperty("resource")) {

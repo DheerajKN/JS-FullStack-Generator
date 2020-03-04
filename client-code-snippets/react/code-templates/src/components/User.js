@@ -5,7 +5,7 @@ export default class User extends Component {
         users: []
     }
     componentWillMount() {
-        fetch('/api/users')
+        fetch(`${JSON.parse(process.env.ELECTRON_PROD) ? 'http://localhost:8080/api' : '/api'}/users`)
             .then(res => res.json())
             .then(users => this.setState({ users }));
     }

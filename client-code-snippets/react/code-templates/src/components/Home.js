@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import ReactImage from '../assets/react.png';
+import ReactImage from '../assets/logo.png';
 import '../style.css';
 
 export default class App extends Component {
@@ -8,7 +8,7 @@ export default class App extends Component {
     state = { username: null };
 
     componentDidMount() {
-        fetch('/api/getUsername')
+        fetch(`${JSON.parse(process.env.ELECTRON_PROD) ? 'http://localhost:8080/api' : '/api'}/getUsername`)
             .then(res => res.json())
             .then(user => this.setState({ username: user.username }));
     }
