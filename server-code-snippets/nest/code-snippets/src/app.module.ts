@@ -10,7 +10,7 @@ import { AddressesModule } from "./addresses/addresses.module";
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, "..", "build")
+      rootPath: join(__dirname, "../../..", "build")
     }),
     PhoneModule,
     UsersModule,
