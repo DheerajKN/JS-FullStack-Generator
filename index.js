@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const { cd } = require("shelljs");
+const { cd, exec } = require("shelljs");
 const mkdirp = require("mkdirp");
 const { join } = require("path");
 const arguements = require("minimist");
@@ -11,6 +11,7 @@ let arguement = arguements(process.argv.slice(2));
 const vueViewComponent = require("./client-code-snippets/vue/scripts/index.js");
 const reactViewComponent = require("./client-code-snippets/react/scripts/index.js");
 const expressServerComponent = require("./server-code-snippets/express/scripts/index.js");
+const nestServerComponent = require("./server-code-snippets/nest/scripts/index.js");
 const expressAddResource = require("./server-code-snippets/express/scripts/generateResource.js");
 const expressUpdateRoute = require("./server-code-snippets/express/scripts/getRouteFileAndUpdateContent.js");
 const detectFrontEndProject = require("./client-code-snippets/frontend-helper-functions/detectFrontendProjectType");
@@ -33,6 +34,7 @@ if (folderName) {
   appDirectory = join(appDirectory, folderName);
   mkdirp.sync(appDirectory);
   cdIntoApp(appDirectory);
+  exec('npm init -y')
   switch (arguement.view) {
     case "vue":
       vueViewComponent(arguement, join(appDirectory, "client"));
@@ -41,9 +43,20 @@ if (folderName) {
       reactViewComponent(arguement, join(appDirectory, "client"));
       break;
     default:
+      reactViewComponent(arguement, join(appDirectory, "client"));
       break;
   }
-  expressServerComponent(arguement, folderName, join(appDirectory, "server"));
+  switch (arguement.server) {
+    case "nest":
+      nestServerComponent(arguement, folderName, join(appDirectory, "server"));
+      break;
+    case "express":
+      expressServerComponent(arguement, folderName, join(appDirectory, "server"));
+      break;
+    default:
+      expressServerComponent(arguement, folderName, join(appDirectory, "server"));
+      break;
+  }
 } else {
   detectFrontEndProject(appDirectory).then(frontendProjectType => {
     if (arguement.hasOwnProperty("resource")) {

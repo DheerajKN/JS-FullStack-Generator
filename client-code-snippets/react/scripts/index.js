@@ -2,7 +2,7 @@ const { exec, mv, cp } = require('shelljs');
 const { join } = require('path');
 const { existsSync, readFile, writeFile } = require('fs')
 module.exports = (argument, folderDirectory) => {
-    exec('npm init -y && npm i express react react-dom react-router-dom')
+    exec('npm i react react-dom react-router-dom')
     //Babel Dependencies
     exec('npm i -D babel-polyfill @babel/core @babel/node @babel/plugin-proposal-class-properties @babel/preset-env @babel/preset-react babel-loader')
     //Styling Dependencies

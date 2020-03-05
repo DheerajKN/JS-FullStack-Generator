@@ -61,4 +61,4 @@ Simple Express ES7 generator that creates
 
 ## Further Development
 
-- --server option to build with Restify Server
+- --server option to build with Nest.js Server

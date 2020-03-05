@@ -1,11 +1,14 @@
-const shell = require('shelljs');
+const { exec, cp } = require('shelljs');
 const { join } = require('path');
 const { writeFile, readFile } = require('fs');
 const os = require('os');
 
 module.exports = (argument, folderName, folderDirectory) => {
-    shell.exec('npm i express')
-    shell.cp('-R', join(__dirname, '..', 'code-snippets'), folderDirectory)
+    exec('npm i @nestjs/common @nestjs/core @nestjs/platform-express reflect-metadata rxjs')
+
+    exec('npm i -D @nestjs/cli @nestjs/serve-static')
+
+    cp('-R', join(__dirname, '..', 'code-snippets'), folderDirectory)
 
     readFile(join(folderDirectory, '..', 'package.json'), 'utf8', (err, content) => {
         content = JSON.parse(content);
@@ -58,9 +61,19 @@ module.exports = (argument, folderName, folderDirectory) => {
         content.scripts.start = "npm-run-all --parallel start:client start:electron server";
         content.scripts['start:client'] = "cross-env BROWSER=none webpack-dev-server --env.ELECTRON_PROD=false --mode development --devtool inline-source-map --hot";
         content.scripts['start:electron'] = "wait-on http://localhost:3000 && electron ."
-        content.scripts.server = "nodemon --exec babel-node server/src/index.js";
+        content.scripts.server = "nest start";
         content.scripts.build = "npm-run-all --parallel build:client server";
+        content.scripts['start:dev'] = "nest start --watch";
 
+        //Nest Values
+        content["rootDir"] = "src";
         writeFile(join(folderDirectory, '..', 'package.json'), JSON.stringify(content, null, "  "), () => { });
+
+        //Move critical files to top level
+        const initialDirectory = join(folderDirectory, 'src');
+        const moveThemToParent = ['nest-cli.json', 'tsconfig.build.json', 'tsconfig.json']
+        const finalSet = moveThemToParent.map(file => join(initialDirectory, file))
+
+        mv(finalSet, join(folderDirectory, '..'))
     })
 }
