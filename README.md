@@ -14,14 +14,19 @@ Simple Express ES7 generator that creates
 
 > After cloning the project. Execute `npm i && npm link`
 
-## Usage
+## Usage Default
 
-    [directory-where-you-want-create-boilerplate] $ express-view-es7 <project-name> --style=scss --view=react
+    [directory-where-you-want-create-boilerplate] $ express-view-es7 <project-name>
+
+## Usage customizable
+
+    [directory-where-you-want-create-boilerplate] $ express-view-es7 <project-name> --style=scss --view=vue --server=nest
 
 ## Arguements during creation
 
-- Style [Supported]: CSS, SASS, SCSS, LESS
-- View [Supported]: React.js, Vue.js
+- Style [Supported]: CSS [Default], SASS, SCSS, LESS
+- View [Supported]: React.js [Default], Vue.js
+- Server [Supported]: Express.js [Default], Nest.js
 
 ## Functionalities that can be used after creation
 
@@ -61,4 +66,4 @@ Simple Express ES7 generator that creates
 
 ## Further Development
 
-- --server option to build with Nest.js Server
+- Nest.js Server options for --db and --auth --resource

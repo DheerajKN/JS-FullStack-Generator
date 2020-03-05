@@ -1,4 +1,4 @@
-const { exec, cp } = require('shelljs');
+const { exec, cp, mv } = require('shelljs');
 const { join } = require('path');
 const { writeFile, readFile } = require('fs');
 const os = require('os');
@@ -70,9 +70,8 @@ module.exports = (argument, folderName, folderDirectory) => {
         writeFile(join(folderDirectory, '..', 'package.json'), JSON.stringify(content, null, "  "), () => { });
 
         //Move critical files to top level
-        const initialDirectory = join(folderDirectory, 'src');
         const moveThemToParent = ['nest-cli.json', 'tsconfig.build.json', 'tsconfig.json']
-        const finalSet = moveThemToParent.map(file => join(initialDirectory, file))
+        const finalSet = moveThemToParent.map(file => join(folderDirectory, file))
 
         mv(finalSet, join(folderDirectory, '..'))
     })
