@@ -19,7 +19,7 @@ export default class App extends Component {
             <div>
                 <img src={ReactImage} alt="react" style={{ height: '250px' }} />
                 {username ? <h1>{`Hello there, I'm ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
-                <Link to="/users">See More users</Link>
+                <Link to="/addresses">See More addresses</Link>
             </div>
         )
     }

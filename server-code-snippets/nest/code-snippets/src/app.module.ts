@@ -3,8 +3,6 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { ServeStaticModule } from "@nestjs/serve-static";
 import { join } from "path";
-import { PhoneModule } from "./phone/phone.module";
-import { UsersModule } from "./users/users.module";
 import { AddressesModule } from "./addresses/addresses.module";
 
 @Module({
@@ -12,8 +10,6 @@ import { AddressesModule } from "./addresses/addresses.module";
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, "../../..", "build")
     }),
-    PhoneModule,
-    UsersModule,
     AddressesModule
   ],
   controllers: [AppController],
