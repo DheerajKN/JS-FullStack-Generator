@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const { cd, exec } = require("shelljs");
 const mkdirp = require("mkdirp");
-const { join } = require("path");
+const { join, sep } = require("path");
 const arguements = require("minimist");
 
 let appDirectory = `${process.cwd()}`;
@@ -31,35 +31,7 @@ const cdIntoApp = appDirectory => {
   });
 };
 
-let folderName = arguement._[0];
-if (folderName !== undefined) {
-  appDirectory = join(appDirectory, folderName);
-  mkdirp.sync(appDirectory);
-  cdIntoApp(appDirectory);
-  exec('npm init -y')
-  switch (arguement.view) {
-    case "vue":
-      vueViewComponent(arguement, join(appDirectory, "client"));
-      break;
-    case "react":
-      reactViewComponent(arguement, join(appDirectory, "client"));
-      break;
-    default:
-      reactViewComponent(arguement, join(appDirectory, "client"));
-      break;
-  }
-  switch (arguement.server) {
-    case "nest":
-      nestServerComponent(arguement, folderName, join(appDirectory, "server"));
-      break;
-    case "express":
-      expressServerComponent(arguement, folderName, join(appDirectory, "server"));
-      break;
-    default:
-      expressServerComponent(arguement, folderName, join(appDirectory, "server"));
-      break;
-  }
-} else {
+if (Object.keys(arguement).some(r => ["resource", "route", "db", "auth"].includes(r))) {
   detectFrontEndProject(appDirectory).then(frontendProjectType => {
     detectServerProject(appDirectory).then(serverProjectType => {
       if (arguement.hasOwnProperty("resource")) {
@@ -91,11 +63,43 @@ if (folderName !== undefined) {
         }
       }
       if (arguement.hasOwnProperty("db")) {
-        dbComponent.addDBComponent(appDirectory, folderName);
+        dbComponent.addDBComponent(appDirectory, process.cwd().split(sep).pop());
         if (arguement.hasOwnProperty("auth")) {
           authComponent.addAuthComponent(appDirectory);
         }
       }
     });
   }).catch((err) => console.log('Package.json is missing make sure that your inside project directory to execute this command'))
+}
+
+else if (arguement._[0] !== undefined) {
+  let folderName = arguement._[0];
+  appDirectory = join(appDirectory, folderName);
+  mkdirp.sync(appDirectory);
+  cdIntoApp(appDirectory);
+  exec('npm init -y')
+  switch (arguement.view) {
+    case "vue":
+      vueViewComponent(arguement, join(appDirectory, "client"));
+      break;
+    case "react":
+      reactViewComponent(arguement, join(appDirectory, "client"));
+      break;
+    default:
+      reactViewComponent(arguement, join(appDirectory, "client"));
+      break;
+  }
+  switch (arguement.server) {
+    case "nest":
+      nestServerComponent(arguement, folderName, join(appDirectory, "server"));
+      break;
+    case "express":
+      expressServerComponent(arguement, folderName, join(appDirectory, "server"));
+      break;
+    default:
+      expressServerComponent(arguement, folderName, join(appDirectory, "server"));
+      break;
+  }
+} else {
+  console.log('Please Add project name as an arguement')
 }

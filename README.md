@@ -66,5 +66,5 @@ Simple Express ES7 generator that creates
 
 ## Further Development
 
-- Nest.js Server options for --db and --auth --resource
+- Nest.js Server options for --db and --auth
 - Better Code Structuring
