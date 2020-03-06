@@ -15,6 +15,8 @@ const nestServerComponent = require("./server-code-snippets/nest/scripts/index.j
 const expressAddResource = require("./server-code-snippets/express/scripts/generateResource.js");
 const expressUpdateRoute = require("./server-code-snippets/express/scripts/getRouteFileAndUpdateContent.js");
 const detectFrontEndProject = require("./client-code-snippets/frontend-helper-functions/detectFrontendProjectType");
+const detectServerProject = require("./server-code-snippets/server-helper-functions/detectServerProjectType");
+const nestCreateModule = require('./server-code-snippets/nest/scripts/nestCreateModule');
 const reactAddResourceAndUpdateRoute = require("./client-code-snippets/react/scripts/updateRoute.js");
 const vueAddResourceAndUpdateRoute = require("./client-code-snippets/vue/scripts/updateRouter");
 const dbComponent = require("./server-code-snippets/express/scripts/dbComponent");
@@ -30,7 +32,7 @@ const cdIntoApp = appDirectory => {
 };
 
 let folderName = arguement._[0];
-if (folderName) {
+if (folderName !== undefined) {
   appDirectory = join(appDirectory, folderName);
   mkdirp.sync(appDirectory);
   cdIntoApp(appDirectory);
@@ -59,31 +61,41 @@ if (folderName) {
   }
 } else {
   detectFrontEndProject(appDirectory).then(frontendProjectType => {
-    if (arguement.hasOwnProperty("resource")) {
-      expressUpdateRoute
-        .updateRouteText(
-          `${appDirectory}/server/src/routes/index.js`,
-          arguement.resource
-        )
-        .then(() =>
-          expressAddResource.createControllerAndService(
-            appDirectory,
-            arguement.resource
-          )
-        );
-    }
-    if (arguement.hasOwnProperty("route")) {
-      if (frontendProjectType === "react") {
-        reactAddResourceAndUpdateRoute(appDirectory, arguement.route);
-      } else if (frontendProjectType === "vue") {
-        vueAddResourceAndUpdateRoute(appDirectory, arguement.route);
+    detectServerProject(appDirectory).then(serverProjectType => {
+      if (arguement.hasOwnProperty("resource")) {
+        if (serverProjectType === 'express') {
+          expressUpdateRoute
+            .updateRouteText(
+              `${appDirectory}/server/src/routes/index.js`,
+              arguement.resource
+            )
+            .then(() =>
+              expressAddResource.createControllerAndService(
+                appDirectory,
+                arguement.resource
+              )
+            );
+        } else if (serverProjectType === 'nest') {
+          nestCreateModule
+            .createControllerAndService(
+              appDirectory,
+              arguement.resource
+            )
+        }
       }
-    }
-    if (arguement.hasOwnProperty("db")) {
-      dbComponent.addDBComponent(appDirectory, folderName);
-      if (arguement.hasOwnProperty("auth")) {
-        authComponent.addAuthComponent(appDirectory);
+      if (arguement.hasOwnProperty("route")) {
+        if (frontendProjectType === "react") {
+          reactAddResourceAndUpdateRoute(appDirectory, arguement.route);
+        } else if (frontendProjectType === "vue") {
+          vueAddResourceAndUpdateRoute(appDirectory, arguement.route);
+        }
       }
-    }
-  });
+      if (arguement.hasOwnProperty("db")) {
+        dbComponent.addDBComponent(appDirectory, folderName);
+        if (arguement.hasOwnProperty("auth")) {
+          authComponent.addAuthComponent(appDirectory);
+        }
+      }
+    });
+  }).catch((err) => console.log('Package.json is missing make sure that your inside project directory to execute this command'))
 }
