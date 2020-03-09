@@ -1,7 +1,7 @@
 {
-  "name": "JS-FullStack-Generator",
-  "version": "1.0.0",
-  "description": "Application that can create MERN and MEVN App along with css precompiler",
+  "name": "js-fullstack-generator",
+  "version": "1.2.0",
+  "description": "Application that can create Full Stack JS App along with css precompiler",
   "main": "index.js",
   "bin": {
     "js-fullStack": "index.js"
