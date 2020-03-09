@@ -2,7 +2,7 @@ const { exec } = require('shelljs')
 const createFileWithContent = require('../../express/scripts/createFileAndAddContent');
 
 module.exports.createControllerAndService = (fileDirectory, resource) => {
-    exec(`cd server/src/ && npx nest g mo ${resource} && npx nest g co ${resource} && npx nest g s ${resource} && cd ../..`);
+    exec(`cd server/src/ && npx nest g mo ${resource} && npx nest g co ${resource} --no-spec && npx nest g s ${resource} --no-spec && cd ../..`);
 
     const capitalizedResource = resource.charAt(0).toUpperCase() + resource.slice(1)
 

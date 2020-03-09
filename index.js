@@ -20,6 +20,7 @@ const nestCreateModule = require('./server-code-snippets/nest/scripts/nestCreate
 const reactAddResourceAndUpdateRoute = require("./client-code-snippets/react/scripts/updateRoute.js");
 const vueAddResourceAndUpdateRoute = require("./client-code-snippets/vue/scripts/updateRouter");
 const dbComponent = require("./server-code-snippets/express/scripts/dbComponent");
+const nestDBComponent = require("./server-code-snippets/nest/scripts/dbComponent");
 const authComponent = require("./server-code-snippets/express/scripts/authComponent");
 
 const cdIntoApp = appDirectory => {
@@ -63,9 +64,16 @@ if (Object.keys(arguement).some(r => ["resource", "route", "db", "auth"].include
         }
       }
       if (arguement.hasOwnProperty("db")) {
-        dbComponent.addDBComponent(appDirectory, process.cwd().split(sep).pop());
-        if (arguement.hasOwnProperty("auth")) {
-          authComponent.addAuthComponent(appDirectory);
+        if (serverProjectType === "express") {
+          dbComponent.addDBComponent(appDirectory, process.cwd().split(sep).pop());
+          if (arguement.hasOwnProperty("auth")) {
+            authComponent.addAuthComponent(appDirectory);
+          }
+        } else if (serverProjectType === "nest") {
+          nestDBComponent.addDBComponent(appDirectory, process.cwd().split(sep).pop());
+          if (arguement.hasOwnProperty("auth")) {
+            // authComponent.addAuthComponent(appDirectory);
+          }
         }
       }
     });
