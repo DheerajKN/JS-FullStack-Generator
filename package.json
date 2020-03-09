@@ -1,10 +1,10 @@
 {
-  "name": "express-react-vue-generator",
+  "name": "JS-FullStack-Generator",
   "version": "1.0.0",
   "description": "Application that can create MERN and MEVN App along with css precompiler",
   "main": "index.js",
   "bin": {
-    "express-view-es7": "index.js"
+    "js-fullStack": "index.js"
   },
   "engines": {
     "node": ">= 10"
@@ -12,7 +12,7 @@
   "further-enhancements": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/DheerajKN/Express-MVC-ES7"
+    "url": "https://github.com/DheerajKN/JS-FullStack-Generator"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

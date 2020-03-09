@@ -1,14 +1,14 @@
-# Express-View-Generator
+# JS-FullStack-Generator
 
-Simple Express ES7 generator that creates
+Simple Full Stack Project Generator based on ES7 syntax for both front-end and back-end that creates
 
-    Model and Controller Part via Express Directly
+    Model and Controller Part handled by Backend written on JS with Express and TS using Nest
 
     and
 
     Seperate View Component using React and Vue powered by Webpack through --view flag
 
-    Along with creating MERN and MEVN stacks with has css precompiler through --style flag
+    Along with creating MERN and MEVN etc.. stacks it has css precompilers through --style flag
 
 ## Initial Setup
 
@@ -16,11 +16,11 @@ Simple Express ES7 generator that creates
 
 ## Usage Default
 
-    [directory-where-you-want-create-boilerplate] $ express-view-es7 <project-name>
+    [directory-where-you-want-create-boilerplate] $ js-fullStack <project-name>
 
 ## Usage customizable
 
-    [directory-where-you-want-create-boilerplate] $ express-view-es7 <project-name> --style=scss --view=vue --server=nest
+    [directory-where-you-want-create-boilerplate] $ js-fullStack <project-name> --style=scss --view=vue --server=nest
 
 ## Arguements during creation
 
@@ -32,19 +32,19 @@ Simple Express ES7 generator that creates
 
 - --resource: This would create an entry in routes/index.js and create subsequent controller and service files.
 
-> [inside-folder-where-boilerplate-is-created] \$ express-view-es7 --resource=phone
+> [inside-folder-where-boilerplate-is-created] \$ js-fullStack --resource=phone
 
 - --route: This would create an entry in router and create file along with mapping based on file type in client/src.
 
-> [inside-folder-where-boilerplate-is-created] \$ express-view-es7 --route=phone
+> [inside-folder-where-boilerplate-is-created] \$ js-fullStack --route=phone
 
 - --db: This would download mongoose and create initial setup files for connection with database along with sample user table with validation fields
 
-> [directory-where-you-want-create-boilerplate] \$ express-view-es7 <project-name> --db
+> [directory-where-you-want-create-boilerplate] \$ js-fullStack <project-name> --db
 
 - --auth: This would automatically create config files for authentication using JWT and uses created User table fields
 
-> [directory-where-you-want-create-boilerplate] \$ express-view-es7 <project-name> --db --auth
+> [directory-where-you-want-create-boilerplate] \$ js-fullStack <project-name> --db --auth
 
 ## NPM Commands
 
@@ -68,4 +68,3 @@ Simple Express ES7 generator that creates
 
 - Nest.js Server options for --auth
 - Better Code Structuring
-- Change Project Name
