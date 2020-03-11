@@ -1,5 +1,6 @@
 const { join } = require('path');
 const { readFile } = require('fs');
+const { frontendFrameworks } = require('../../supportedTypes')
 
 module.exports = (folderDirectory) => {
     return new Promise((resolve, reject) => {
@@ -9,9 +10,9 @@ module.exports = (folderDirectory) => {
             } else {
                 content = JSON.parse(content).dependencies;
                 if (content.hasOwnProperty('vue')) {
-                    resolve('vue')
+                    resolve(frontendFrameworks.VUE)
                 } else if (content.hasOwnProperty('react')) {
-                    resolve('react')
+                    resolve(frontendFrameworks.REACT)
                 }
             }
         })

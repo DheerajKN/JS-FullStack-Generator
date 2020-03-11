@@ -3,6 +3,8 @@ const { cd, exec } = require("shelljs");
 const mkdirp = require("mkdirp");
 const { join } = require("path");
 const arguements = require("minimist");
+const { backendFrameworks, frontendFrameworks } = require('./supportedTypes')
+
 const {
   vueViewComponent, reactViewComponent, expressServerComponent, nestServerComponent, detectFrontEndProject,
   detectServerProject, resourceComponent, dbAndAuthComponent
@@ -24,19 +26,19 @@ const cdIntoApp = appDirectory => {
 };
 
 if (Object.keys(arguement).some(r => ["resource", "route", "db", "auth"].includes(r))) {
-  detectFrontEndProject(appDirectory).then(frontendProjectType => {
-    detectServerProject(appDirectory).then(serverProjectType => {
+  detectFrontEndProject(appDirectory).then(frontendFramework => {
+    detectServerProject(appDirectory).then(backendFramework => {
       if (arguement.hasOwnProperty("resource")) {
-        resourceComponent(serverProjectType, arguement, appDirectory)
+        resourceComponent(backendFramework, arguement, appDirectory)
       }
       if (arguement.hasOwnProperty("route")) {
-        dynamicSwitch(frontendProjectType, [
-          { key: "react", fn: () => reactAddResourceAndUpdateRoute(appDirectory, arguement.route) },
-          { key: "vue", fn: () => vueAddResourceAndUpdateRoute(appDirectory, arguement.route) },
+        dynamicSwitch(frontendFramework, [
+          { key: frontendFrameworks.REACT, fn: () => reactAddResourceAndUpdateRoute(appDirectory, arguement.route.toLowerCase()) },
+          { key: frontendFrameworks.VUE, fn: () => vueAddResourceAndUpdateRoute(appDirectory, arguement.route.toLowerCase()) },
         ])
       }
       if (arguement.hasOwnProperty("db")) {
-        dbAndAuthComponent(serverProjectType, arguement, appDirectory)
+        dbAndAuthComponent(backendFramework, arguement, appDirectory)
       }
     });
   }).catch((err) => console.log('Package.json is missing make sure that your inside project directory to execute this command'))
@@ -48,14 +50,14 @@ else if (arguement._[0] !== undefined) {
   mkdirp.sync(appDirectory);
   cdIntoApp(appDirectory);
   exec('npm init -y')
-  dynamicSwitch(arguement.view, [
-    { key: "react", fn: () => reactViewComponent(arguement, join(appDirectory, "client")) },
-    { key: "vue", fn: () => vueViewComponent(arguement, join(appDirectory, "client")) },
+  dynamicSwitch(arguement.view.toLowerCase(), [
+    { key: frontendFrameworks.REACT, fn: () => reactViewComponent(arguement, join(appDirectory, "client")) },
+    { key: frontendFrameworks.VUE, fn: () => vueViewComponent(arguement, join(appDirectory, "client")) },
   ])
 
-  dynamicSwitch(arguement.server, [
-    { key: "express", fn: () => expressServerComponent(arguement, folderName, join(appDirectory, "server")) },
-    { key: "nest", fn: () => nestServerComponent(arguement, folderName, join(appDirectory, "server")) },
+  dynamicSwitch(arguement.server.toLowerCase(), [
+    { key: backendFrameworks.EXPRESS, fn: () => expressServerComponent(arguement, folderName, join(appDirectory, "server")) },
+    { key: backendFrameworks.NEST, fn: () => nestServerComponent(arguement, folderName, join(appDirectory, "server")) },
   ])
 
 } else {
