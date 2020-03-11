@@ -66,4 +66,4 @@ Simple Full Stack Project Generator based on ES7 syntax for both front-end and b
 
 ## Further Development
 
-- Nest.js Server options for --auth
+- Nest.js Server options for --auth (combined with mongo user)
