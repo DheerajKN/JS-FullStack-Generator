@@ -1,6 +1,6 @@
 const shell = require('shelljs');
 const { join } = require('path');
-const { writeFile, readFile } = require('fs');
+const { writeFile, readFileSync } = require('fs');
 const setPackageJson = require('../../server-helper-functions/setPackageJson')
 
 module.exports = (argument, folderName, folderDirectory) => {

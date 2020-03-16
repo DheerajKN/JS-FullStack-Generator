@@ -50,12 +50,12 @@ else if (arguement._[0] !== undefined) {
   mkdirp.sync(appDirectory);
   cdIntoApp(appDirectory);
   exec('npm init -y')
-  dynamicSwitch(arguement.view.toLowerCase(), [
+  dynamicSwitch(arguement.view === undefined ? "react" : arguement.view.toLowerCase(), [
     { key: frontendFrameworks.REACT, fn: () => reactViewComponent(arguement, join(appDirectory, "client")) },
     { key: frontendFrameworks.VUE, fn: () => vueViewComponent(arguement, join(appDirectory, "client")) },
   ])
 
-  dynamicSwitch(arguement.server.toLowerCase(), [
+  dynamicSwitch(arguement.server === undefined ? "express" : arguement.server.toLowerCase(), [
     { key: backendFrameworks.EXPRESS, fn: () => expressServerComponent(arguement, folderName, join(appDirectory, "server")) },
     { key: backendFrameworks.NEST, fn: () => nestServerComponent(arguement, folderName, join(appDirectory, "server")) },
   ])

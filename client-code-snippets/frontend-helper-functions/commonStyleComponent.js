@@ -5,7 +5,7 @@ const { mv, cp, exec } = require('shelljs')
 module.exports = (folderDirectory, argument, filePath, initialDirectory) => {
     const moveThemToParent = ['webpack.config.js', '.babelrc']
     const finalSet = moveThemToParent.map(file => join(initialDirectory, file))
-    const style = argument.style.toLowerCase();
+    const style = argument.style === undefined ? "css" : argument.style.toLowerCase();
 
     mv(finalSet, join(folderDirectory, '..'))
 
