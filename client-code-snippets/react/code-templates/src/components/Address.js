@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import {fetchAPI} from '../api/fetchApi';
 
 export default class Address extends Component {
     state = {
         addresses: []
     }
     componentWillMount() {
-        fetch(`${JSON.parse(process.env.ELECTRON_PROD) ? 'http://localhost:8080/api' : '/api'}/addresses`)
+        fetchAPI('/addresses')
             .then(res => res.json())
             .then(addresses => this.setState({ addresses }));
     }

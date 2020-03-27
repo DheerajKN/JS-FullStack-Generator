@@ -2,6 +2,7 @@ const getFileContent = require('../../frontend-helper-functions/getFileContent.j
 const createFileAndAddContent = require('../../frontend-helper-functions/updateFileContent')
 const pluralize = require('pluralize')
 const { join } = require('path')
+
 module.exports = (projectDirectory, route) => {
     const mainRouterFile = join(projectDirectory, 'client', 'src', 'App.js')
     const capitalizedRoute = route.charAt(0).toUpperCase() + route.slice(1)
@@ -16,7 +17,7 @@ module.exports = (projectDirectory, route) => {
 
     const routingFile = join(projectDirectory, 'client', 'src', 'components', 'Home.js')
     getFileContent.fetchContent(routingFile).then(oldContent => {
-        let newContent = oldContent.replace(/<Link to="\/users">(.*)/, `<Link to="/users">See More Users</Link>{" | "}\n                <Link to="/${pluralize(route)}">${pluralize(route)}</Link>{" | "}`);
+        let newContent = oldContent.replace(/<Link to="\/addresses">(.*)/, `<Link to="/addresses">See More addresses</Link>{" | "}\n                <Link to="/${pluralize(route)}">${pluralize(route)}</Link>{" | "}`);
         newContent = newContent.replace(/<Route path="\/" exact component=(.*)/, `<Route path="/${pluralize(route)}" component={${capitalizedRoute}} />
         <Route path="/" exact component={Home} />`);
 
@@ -25,6 +26,8 @@ module.exports = (projectDirectory, route) => {
 }
 
 reactClassTemplate = (route) => `import React, { Component } from 'react'
+import {fetchAPI} from '../api/fetchAPI';
+
 export default class ${route} extends Component {
     render() {
         return (

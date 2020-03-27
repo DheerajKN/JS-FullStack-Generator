@@ -1,6 +1,7 @@
 const expressAddResource = require("../express/scripts/generateResource.js");
 const expressUpdateRoute = require("../express/scripts/getRouteFileAndUpdateContent.js");
 const nestCreateModule = require('../nest/scripts/nestCreateModule');
+const dynamicSwitch = require('../../dynamicSwitch')
 const { backendFrameworks } = require('../../supportedTypes')
 
 module.exports = (serverProjectType, arguement, appDirectory) => {

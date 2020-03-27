@@ -57,6 +57,8 @@ vueTemplate = route => `<template>
 
 <script>
 import logo from "../assets/logo.png";
+import {fetchAPI} from "../api/fetchAPI";
+
 export default {
   name: "${route}",
   data() {

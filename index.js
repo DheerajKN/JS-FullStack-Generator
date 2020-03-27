@@ -7,7 +7,7 @@ const { backendFrameworks, frontendFrameworks } = require('./supportedTypes')
 
 const {
   vueViewComponent, reactViewComponent, expressServerComponent, nestServerComponent, detectFrontEndProject,
-  detectServerProject, resourceComponent, dbAndAuthComponent
+  detectServerProject, resourceComponent, dbAndAuthComponent, reactAddResourceAndUpdateRoute, vueAddResourceAndUpdateRoute
 } = require('./exports')
 
 let appDirectory = `${process.cwd()}`;
