@@ -10,6 +10,7 @@
 
 <script>
 import logo from "../assets/logo.png";
+import {fetchAPI} from "../api/fetchAPI";
 export default {
   name: "App",
   data() {
@@ -19,13 +20,7 @@ export default {
     };
   },
   mounted() {
-    fetch(
-      `${
-        JSON.parse(process.env.ELECTRON_PROD)
-          ? "http://localhost:8080/api"
-          : "/api"
-      }/addresses`
-    )
+    fetchAPI('/addresses')
       .then(res => res.json())
       .then(locations => (this.names = locations));
   }
