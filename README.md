@@ -25,7 +25,7 @@ Simple Full Stack Project Generator based on ES6 syntax for both front-end and b
 ## Arguements during creation
 
 - Style [Supported]: CSS [Default], SASS, SCSS, LESS
-- View [Supported]: React.js [Default], Vue.js
+- View [Supported]: React.js [Default], Vue.js, Svelte.js
 - Server [Supported]: Express.js [Default], Nest.js
 
 ## Functionalities that can be used after creation
