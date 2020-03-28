@@ -1,6 +1,7 @@
 module.exports.frontendFrameworks = {
     REACT: 'react',
-    VUE: 'vue'
+    VUE: 'vue',
+    SVELTE: 'svelte'
 }
 
 module.exports.backendFrameworks = {

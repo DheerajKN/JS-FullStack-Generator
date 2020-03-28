@@ -7,8 +7,8 @@ const { backendFrameworks, frontendFrameworks } = require('./supportedTypes')
 
 const {
   vueViewComponent, reactViewComponent, expressServerComponent, nestServerComponent, detectFrontEndProject,
-  detectServerProject, resourceComponent, dbAndAuthComponent, reactAddResourceAndUpdateRoute, vueAddResourceAndUpdateRoute
-} = require('./exports')
+  detectServerProject, resourceComponent, dbAndAuthComponent, reactAddResourceAndUpdateRoute, vueAddResourceAndUpdateRoute,
+  svelteViewComponent} = require('./exports')
 
 let appDirectory = `${process.cwd()}`;
 
@@ -53,6 +53,7 @@ else if (arguement._[0] !== undefined) {
   dynamicSwitch(arguement.view === undefined ? "react" : arguement.view.toLowerCase(), [
     { key: frontendFrameworks.REACT, fn: () => reactViewComponent(arguement, join(appDirectory, "client")) },
     { key: frontendFrameworks.VUE, fn: () => vueViewComponent(arguement, join(appDirectory, "client")) },
+    { key: frontendFrameworks.SVELTE, fn: () => svelteViewComponent(arguement, join(appDirectory, "client")) },
   ])
 
   dynamicSwitch(arguement.server === undefined ? "express" : arguement.server.toLowerCase(), [

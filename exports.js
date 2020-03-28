@@ -1,6 +1,7 @@
 //View Components
 const vueViewComponent = require("./client-code-snippets/vue/scripts/index.js");
 const reactViewComponent = require("./client-code-snippets/react/scripts/index.js");
+const svelteViewComponent = require("./client-code-snippets/svelte/scripts/index.js");
 //Server Components
 const expressServerComponent = require("./server-code-snippets/express/scripts/index.js");
 const nestServerComponent = require("./server-code-snippets/nest/scripts/index.js");
@@ -16,5 +17,6 @@ const reactAddResourceAndUpdateRoute = require('./client-code-snippets/react/scr
 
 module.exports = {
     vueViewComponent, reactViewComponent, expressServerComponent, nestServerComponent, detectFrontEndProject,
-    detectServerProject, resourceComponent, dbAndAuthComponent, vueAddResourceAndUpdateRoute, reactAddResourceAndUpdateRoute
+    detectServerProject, resourceComponent, dbAndAuthComponent, vueAddResourceAndUpdateRoute, reactAddResourceAndUpdateRoute,
+    svelteViewComponent
 }

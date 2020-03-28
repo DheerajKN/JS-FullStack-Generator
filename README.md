@@ -1,6 +1,6 @@
 # JS-FullStack-Generator
 
-Simple Full Stack Project Generator based on ES7 syntax for both front-end and back-end that creates
+Simple Full Stack Project Generator based on ES6 syntax for both front-end and back-end that creates
 
     Model and Controller Part handled by Backend written on JS with Express and TS using Nest
 
@@ -67,3 +67,4 @@ Simple Full Stack Project Generator based on ES7 syntax for both front-end and b
 ## Further Development
 
 - Nest.js Server options for --auth (combined with mongo user)
+- Better Support for PWA for all frontend frameworks

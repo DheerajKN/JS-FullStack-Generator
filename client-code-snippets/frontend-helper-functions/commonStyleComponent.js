@@ -2,8 +2,8 @@ const { existsSync, readFile, writeFile } = require('fs')
 const { join } = require('path')
 const { mv, cp, exec } = require('shelljs')
 
-module.exports = (folderDirectory, argument, filePath, initialDirectory) => {
-    const moveThemToParent = ['webpack.config.js', '.babelrc']
+module.exports = (folderDirectory, argument, filePath, initialDirectory, additionalTransfers = []) => {
+    const moveThemToParent = ['webpack.config.js', '.babelrc'].concat(additionalTransfers)
     const finalSet = moveThemToParent.map(file => join(initialDirectory, file))
     const style = argument.style === undefined ? "css" : argument.style.toLowerCase();
 

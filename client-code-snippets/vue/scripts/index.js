@@ -5,7 +5,7 @@ const commonStyleComponent = require('../../frontend-helper-functions/commonStyl
 module.exports = (argument, folderDirectory) => {
     exec('npm i vue vue-router')
     //Babel Dependencies
-    exec('npm i -D babel-polyfill @babel/core @babel/node @babel/plugin-proposal-class-properties @babel/preset-env babel-loader file-loader')
+    exec('npm i -D babel-polyfill @babel/core @babel/node @babel/preset-env babel-loader file-loader')
     //Styling and Vue Loader Dependencies
     exec('npm i -D vue-loader vue-template-compiler css-loader html-loader')
     //Webpack, Execution Dependencies
