@@ -68,3 +68,5 @@ Simple Full Stack Project Generator based on ES6 syntax for both front-end and b
 
 - Nest.js Server options for --auth (combined with mongo user)
 - Better Support for PWA for all frontend frameworks
+- Svelte Add Route Functionality
+- Eleventy Electron Support and Add Route Functionality
