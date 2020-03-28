@@ -6,9 +6,11 @@ Simple Full Stack Project Generator based on ES6 syntax for both front-end and b
 
     and
 
-    Seperate View Component using React and Vue powered by Webpack through --view flag
+    Seperate View Component using React, Vue and Svelte powered by Webpack and Eleventy powered by Browserify through --view flag
 
     Along with creating MERN and MEVN etc.. stacks it has css precompilers through --style flag
+
+    Also JAM Stack support via Eleventy
 
 ## Initial Setup
 
@@ -25,7 +27,7 @@ Simple Full Stack Project Generator based on ES6 syntax for both front-end and b
 ## Arguements during creation
 
 - Style [Supported]: CSS [Default], SASS, SCSS, LESS
-- View [Supported]: React.js [Default], Vue.js
+- View [Supported]: React.js [Default], Vue.js, Svelte.js, @11ty/Eleventy (JAM Stack)
 - Server [Supported]: Express.js [Default], Nest.js
 
 ## Functionalities that can be used after creation
