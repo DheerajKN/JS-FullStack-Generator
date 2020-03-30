@@ -13,6 +13,8 @@ module.exports = (folderDirectory) => {
                     resolve(frontendFrameworks.VUE)
                 } else if (content.hasOwnProperty('react')) {
                     resolve(frontendFrameworks.REACT)
+                } else if (content.hasOwnProperty('svelte')) {
+                    resolve(frontendFrameworks.SVELTE)
                 }
             }
         })

@@ -7,8 +7,8 @@ const { backendFrameworks, frontendFrameworks } = require('./supportedTypes')
 
 const {
   vueViewComponent, reactViewComponent, expressServerComponent, nestServerComponent, detectFrontEndProject,
-  detectServerProject, resourceComponent, dbAndAuthComponent, reactAddResourceAndUpdateRoute, vueAddResourceAndUpdateRoute,
-  svelteViewComponent} = require('./exports')
+  detectServerProject, resourceComponent, dbAndAuthComponent, vueAddComponentAndUpdateRoute, reactAddComponentAndUpdateRoute,
+  svelteViewComponent, svelteAddComponentAndUpdateRoute} = require('./exports')
 
 let appDirectory = `${process.cwd()}`;
 
@@ -33,8 +33,9 @@ if (Object.keys(arguement).some(r => ["resource", "route", "db", "auth"].include
       }
       if (arguement.hasOwnProperty("route")) {
         dynamicSwitch(frontendFramework, [
-          { key: frontendFrameworks.REACT, fn: () => reactAddResourceAndUpdateRoute(appDirectory, arguement.route.toLowerCase()) },
-          { key: frontendFrameworks.VUE, fn: () => vueAddResourceAndUpdateRoute(appDirectory, arguement.route.toLowerCase()) },
+          { key: frontendFrameworks.REACT, fn: () => reactAddComponentAndUpdateRoute(appDirectory, arguement.route.toLowerCase()) },
+          { key: frontendFrameworks.VUE, fn: () => vueAddComponentAndUpdateRoute(appDirectory, arguement.route.toLowerCase()) },
+          { key: frontendFrameworks.SVELTE, fn: () => svelteAddComponentAndUpdateRoute(appDirectory, arguement.route.toLowerCase()) }
         ])
       }
       if (arguement.hasOwnProperty("db")) {

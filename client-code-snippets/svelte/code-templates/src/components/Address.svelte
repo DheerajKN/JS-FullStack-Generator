@@ -12,10 +12,10 @@
 
     let addresses;
     onMount(async () => {
-        await fetchAPI('/addresses')
-            .then(r => r.json())
-            .then(data => {
-                addresses = data;
-            });
-        })
+      await fetchAPI('/addresses')
+          .then(r => r.json())
+          .then(data => {
+              addresses = data;
+          });
+      })
 </script>

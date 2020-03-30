@@ -15,15 +15,12 @@ module.exports = (projectDirectory, route) => {
   getFileContent.fetchContent(mainRouterFile).then(oldContent => {
     let newContent = oldContent.replace(
       /export default (.*)/,
-      `export default [\n  {
+      `import ${capitalizedRoute} from "../components/${capitalizedRoute}";
+export default [\n  {
     path: "/${pluralize(route)}",
     name: "${capitalizedRoute}",
     component: ${capitalizedRoute}
   },`
-    );
-    newContent = newContent.replace(
-      /\";(?=[^.]*$)/,
-      `";\nimport ${capitalizedRoute} from "../components/${capitalizedRoute}";`
     );
     createFileAndAddContent.createFileWithContent(mainRouterFile, newContent);
     createFileAndAddContent.createFileWithContent(

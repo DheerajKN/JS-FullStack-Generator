@@ -12,11 +12,12 @@ const detectServerProject = require("./server-code-snippets/server-helper-functi
 const resourceComponent = require('./server-code-snippets/server-helper-functions/resourceComponent');
 const dbAndAuthComponent = require('./server-code-snippets/server-helper-functions/dbAndAuthComponent');
 //Add Route to client And Update route component
-const vueAddResourceAndUpdateRoute = require('./client-code-snippets/vue/scripts/updateRouter')
-const reactAddResourceAndUpdateRoute = require('./client-code-snippets/react/scripts/updateRoute')
+const vueAddComponentAndUpdateRoute = require('./client-code-snippets/vue/scripts/updateRoute')
+const reactAddComponentAndUpdateRoute = require('./client-code-snippets/react/scripts/updateRoute')
+const svelteAddComponentAndUpdateRoute = require('./client-code-snippets/svelte/scripts/updateRoute')
 
 module.exports = {
     vueViewComponent, reactViewComponent, expressServerComponent, nestServerComponent, detectFrontEndProject,
-    detectServerProject, resourceComponent, dbAndAuthComponent, vueAddResourceAndUpdateRoute, reactAddResourceAndUpdateRoute,
-    svelteViewComponent
+    detectServerProject, resourceComponent, dbAndAuthComponent, vueAddComponentAndUpdateRoute, reactAddComponentAndUpdateRoute,
+    svelteViewComponent, svelteAddComponentAndUpdateRoute
 }
