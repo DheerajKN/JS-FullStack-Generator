@@ -4,8 +4,6 @@ const pluralize = require('pluralize')
 const createFileWithContent = require('./createFileAndAddContent');
 
 module.exports.updateRouteText = (filePath, resource) => {
-    console.log('entered');
-    
     return new Promise((resolve, reject) => {
         const pluralizedResource = resource === 'auth' ? 'authentication' : pluralize(resource);
         try {

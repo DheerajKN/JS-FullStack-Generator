@@ -4,12 +4,12 @@ const createFileWithContent = require('./createFileAndAddContent');
 
 module.exports.createControllerAndService = (fileDirectory, resource) => {
     createFileWithContent.createFileWithContent(`${fileDirectory}/server/src/controller/${resource}Controller.js`,
-        controllerSyntax(resource, pluralize(resource)))
+        controllerExpressSyntax(resource, pluralize(resource)))
     createFileWithContent.createFileWithContent(`${fileDirectory}/server/src/service/${resource}Service.js`,
-        serviceSyntax(resource))
+        serviceExpressSyntax(resource))
 }
 
-controllerSyntax = (resource, pluralResource) => `import {Router} from 'express';
+controllerExpressSyntax = (resource, pluralResource) => `import {Router} from 'express';
 import ${resource}Service from '../service/${resource}Service';
 
 const ${pluralResource} = Router();
@@ -17,9 +17,9 @@ const ${pluralResource} = Router();
 ${pluralResource}.get('/', ${resource}Service.all);
 ${pluralResource}.get('/:${resource}Id', ${resource}Service.single);
 
-module.exports = ${pluralResource};`
+export default ${pluralResource};`
 
-serviceSyntax = (resource) => `module.exports = {
+serviceExpressSyntax = (resource) => `export default {
     single: (req, res) => {
         const ${resource} = req.params.${resource}Id;
         res.status(200).json({ ${resource} });

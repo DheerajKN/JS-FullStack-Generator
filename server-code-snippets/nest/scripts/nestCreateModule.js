@@ -7,12 +7,12 @@ module.exports.createControllerAndService = (fileDirectory, resource) => {
     const capitalizedResource = resource.charAt(0).toUpperCase() + resource.slice(1)
 
     createFileWithContent.createFileWithContent(`${fileDirectory}/server/src/${resource}/${resource}.controller.ts`,
-        controllerSyntax(resource, capitalizedResource))
+        controllerNestSyntax(resource, capitalizedResource))
     createFileWithContent.createFileWithContent(`${fileDirectory}/server/src/${resource}/${resource}.service.ts`,
-        serviceSyntax(resource, capitalizedResource))
+        serviceNestSyntax(resource, capitalizedResource))
 }
 
-controllerSyntax = (resource, capitalizedResource) => `import { Controller, Get, Param } from "@nestjs/common";
+controllerNestSyntax = (resource, capitalizedResource) => `import { Controller, Get, Param } from "@nestjs/common";
 import { ${capitalizedResource}Service } from './${resource}.service'
 
 @Controller('${resource}')
@@ -30,7 +30,7 @@ export class ${capitalizedResource}Controller {
       }
 }`
 
-serviceSyntax = (resource, capitalizedResource) => `import { Injectable } from '@nestjs/common';
+serviceNestSyntax = (resource, capitalizedResource) => `import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class ${capitalizedResource}Service {
