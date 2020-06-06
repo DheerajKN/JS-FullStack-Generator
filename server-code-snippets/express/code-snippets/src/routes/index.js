@@ -9,4 +9,4 @@ routes.get('/test', (req, res) => {
 
 routes.use('/addresses', addresses);
 
-module.exports = routes;
+export default routes;

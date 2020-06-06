@@ -6,4 +6,4 @@ const addresses = Router();
 addresses.get('/', addressService.all);
 addresses.get('/:addressId', addressService.single);
 
-module.exports = addresses;
+export default addresses;
