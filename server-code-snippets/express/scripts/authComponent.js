@@ -1,11 +1,11 @@
 const {createFileWithContent} = require('./createFileAndAddContent')
-const shell = require('shelljs')
+const {exec} = require('shelljs')
 const getFileAndUpdateContent = require('./getRouteFileAndUpdateContent')
 
 module.exports.addAuthComponent = folderDirectory => {
-    shell.exec('npm i jsonwebtoken bcryptjs', () => {
+    exec('npm i jsonwebtoken bcryptjs', () => {
 
-        const fileContent = `import bcrypt from 'bcryptjs'
+    const fileContent = `import bcrypt from 'bcryptjs'
 import User from './models/User'
 
 exports.authenticate = (email, password) => {
@@ -48,9 +48,9 @@ exports.verifyToken = (req, res, next) => {
     }
 }`
 
-        createFileWithContent(`${folderDirectory}/server/src/auth.js`, fileContent)
+    createFileWithContent(`${folderDirectory}/server/src/auth.js`, fileContent)
 
-        const authFileContent = `import bcrypt from 'bcryptjs';
+    const authFileContent = `import bcrypt from 'bcryptjs';
 import { Router } from 'express';
 import jwt from 'jsonwebtoken';
 import {check, validationResult} from "express-validator";

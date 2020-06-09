@@ -1,18 +1,18 @@
 const {createFileWithContent} = require('./createFileAndAddContent')
-const shell = require('shelljs')
+const {exec} = require('shelljs')
 const fs = require('fs');
 
 module.exports.addDBComponent = (folderDirectory, tableName) => {
-    shell.exec('npm i mongoose express-validator', () => {
-        let packageFile = `${folderDirectory}/server/src/index.js`
-        if (fs.existsSync(packageFile)) {
-            fs.readFile(packageFile, 'utf8', (err, oldContent) => {
-                let newContent = oldContent.replace(/(.*)express\(\)/g, `const app = express();\nimport mongoose from 'mongoose'; \n//If db requires username and password\n//mongoose.connect('mongodb://username:password@host:port/${tableName}', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });\nmongoose.connect('mongodb://localhost/${tableName}',{ useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });`);
-                fs.writeFile(packageFile, newContent, (err) => {
-                    if (err) throw err;
-                })
+  exec('npm i mongoose', () => {
+    let packageFile = `${folderDirectory}/server/src/index.js`
+    if (fs.existsSync(packageFile)) {
+        fs.readFile(packageFile, 'utf8', (err, oldContent) => {
+            let newContent = oldContent.replace(/(.*)express\(\)/g, `const app = express();\nimport mongoose from 'mongoose'; \n//If db requires username and password\n//mongoose.connect('mongodb://username:password@host:port/${tableName}', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });\nmongoose.connect('mongodb://localhost/${tableName}',{ useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });`);
+            fs.writeFile(packageFile, newContent, (err) => {
+                if (err) throw err;
             })
-            const userSchema = `import mongoose, {Schema} from "mongoose";
+        })
+      const userSchema = `import mongoose, {Schema} from "mongoose";
 
 const UserSchema = new Schema({
   email: {
@@ -32,8 +32,7 @@ const UserSchema = new Schema({
 
 export default mongoose.model("User", UserSchema);`
 
-            createFileWithContent(folderDirectory + '/server/src/models/User.js', userSchema)
-
-        }
-    })
+      createFileWithContent(folderDirectory + '/server/src/models/User.js', userSchema)
+    }
+  })
 }
