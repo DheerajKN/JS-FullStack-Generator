@@ -4,7 +4,7 @@ const { writeFile, readFileSync } = require('fs');
 const setPackageJson = require('../../server-helper-functions/setPackageJson')
 
 module.exports = (argument, folderName, folderDirectory) => {
-    shell.exec('npm i express')
+    shell.exec('npm i express express-validator')
     shell.cp('-R', join(__dirname, '..', 'code-snippets'), folderDirectory)
 
     var content = JSON.parse(readFileSync(join(folderDirectory, '..', 'package.json')).toString());

@@ -10,21 +10,28 @@ module.exports.createControllerAndService = (fileDirectory, resource) => {
 }
 
 controllerExpressSyntax = (resource, pluralResource) => `import {Router} from 'express';
+import {param} from 'express-validator';
+
 import ${resource}Service from '../service/${resource}Service';
 
 const ${pluralResource} = Router();
 
 ${pluralResource}.get('/', ${resource}Service.all);
-${pluralResource}.get('/:${resource}Id', ${resource}Service.single);
+${pluralResource}.get('/:${resource}Id', param(["${resource}Id"]).isInt({min:1}), ${resource}Service.single);
 
 export default ${pluralResource};`
 
-serviceExpressSyntax = (resource) => `export default {
+serviceExpressSyntax = (resource) => `import {validationResult} from 'express-validator';
+export default {
     single: (req, res) => {
+        const errors = validationResult(req)
+        if(!errors.isEmpty()){
+            return res.status(400).json({errors: errors.array()})
+        }
         const ${resource} = req.params.${resource}Id;
-        res.status(200).json({ ${resource} });
+        return res.status(200).json({ ${resource} });
     },
     all: (req, res) => {
-        res.status(200).json([{ ${resource}: "New York" },{ ${resource}: "Chicago" }]);
+        return res.status(200).json([{ ${resource}: "New York" },{ ${resource}: "Chicago" }]);
     }
 };`

@@ -1,6 +1,6 @@
 import { Controller, Get } from "@nestjs/common";
 import { AppService } from "./app.service";
-const os = require("os");
+import os from 'os';
 
 @Controller()
 export class AppController {

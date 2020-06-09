@@ -12,9 +12,9 @@ module.exports.addDBComponent = (folderDirectory, tableName) => {
                     if (err) throw err;
                 })
             })
-            const userSchema = `import mongoose from "mongoose";
+            const userSchema = `import mongoose, {Schema} from "mongoose";
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
   email: {
     type: String,
     trim: true,
@@ -30,7 +30,7 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("User", UserSchema);`
+export default mongoose.model("User", UserSchema);`
 
             createFileWithContent.createFileWithContent(folderDirectory + '/server/src/models/User.js', userSchema)
 

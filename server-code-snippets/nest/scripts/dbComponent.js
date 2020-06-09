@@ -14,7 +14,7 @@ module.exports.addDBComponent = (folderDirectory, tableName) => {
                     if (err) throw err;
                 })
             })
-            const userSchema = `import * as mongoose from 'mongoose';
+        const userSchema = `import * as mongoose from 'mongoose';
 
 export const UserSchema = new mongoose.Schema({
     email: {
@@ -35,12 +35,12 @@ export const UserSchema = new mongoose.Schema({
     },
 });`
 
-            createFileWithContent.createFileWithContent(folderDirectory + '/server/src/user/user.schema.ts', userSchema)
+        createFileWithContent.createFileWithContent(folderDirectory + '/server/src/user/user.schema.ts', userSchema)
 
-            let processedFile = `${folderDirectory}/server/src/user/user.module.ts`
-            if (fs.existsSync(processedFile)) {
-                fs.readFile(processedFile, 'utf8', (err, oldContent) => {
-                    let newContent = oldContent.replace(/@Module\({/g, `import { MongooseModule } from '@nestjs/mongoose';
+        let processedFile = `${folderDirectory}/server/src/user/user.module.ts`
+        if (fs.existsSync(processedFile)) {
+            fs.readFile(processedFile, 'utf8', (err, oldContent) => {
+                let newContent = oldContent.replace(/@Module\({/g, `import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from './user.schema';
 @Module({
     imports: [MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])],`);

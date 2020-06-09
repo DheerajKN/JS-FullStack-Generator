@@ -1,15 +1,16 @@
-import { Controller, Get, Param } from "@nestjs/common";
+import { Controller, Get, Param, ParseIntPipe } from "@nestjs/common";
 import { AddressesService } from "./addresses.service";
 
 @Controller("addresses")
 export class AddressesController {
   constructor(private readonly addressService: AddressesService) {}
-  @Get()
-  fetchAll(): any {
-    return this.addressService.fetchAll();
+  @Get(':id')
+  getSingular(@Param() id: string): any {
+    return this.addressService.getSingular(id);
   }
-  @Get(":id")
-  fetchSingular(@Param("id") id: Number): any {
-    return this.addressService.singluarFetch(id);
+
+  @Get()
+  getAll(): any {
+    return this.addressService.getAll();
   }
 }

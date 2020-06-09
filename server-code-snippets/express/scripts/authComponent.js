@@ -34,17 +34,17 @@ exports.verifyToken = (req, res, next) => {
     const jwtHeader = req.headers['authorization'];
     // Check if bearer is undefined
     if (typeof jwtHeader !== 'undefined') {
-    // Split at the space
-    const jwtValue = jwtHeader.split(' ');
-    // Get token from array
-    const jwtToken = jwtValue[1];
-    // Set the token
-    req.token = jwtToken;
-    // Next middleware
-    next();
+        // Split at the space
+        const jwtValue = jwtHeader.split(' ');
+        // Get token from array
+        const jwtToken = jwtValue[1];
+        // Set the token
+        req.token = jwtToken;
+        // Next middleware
+        next();
     } else {
-    // Forbidden
-    res.sendStatus(403);
+        // Forbidden
+        return res.sendStatus(403);
     }
 }`
 
@@ -53,16 +53,23 @@ exports.verifyToken = (req, res, next) => {
         const authFileContent = `import bcrypt from 'bcryptjs';
 import { Router } from 'express';
 import jwt from 'jsonwebtoken';
+import {check, validationResult} from "express-validator";
+
 import { authenticate, verifyToken } from '../auth.js';
 import User from '../models/User';
 
 const authProvider = Router();
-authProvider.post('/register', async (req, res) => {
+authProvider.post('/register', [
+    check("email", "Please include a valid email").isEmail(),
+    check("password").exists().withMessage("Password should not be empty")
+    .isLength({min:8}).withMessage("Password must have min. of 8 characters")
+    .matches(/^(?=.*[\\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\\w!@#$%^&*]{8,}$/).withMessage("Password must be atleast one upper case, one number and special character")
+],async (req, res) => {
     const { email, password } = req.body;
 
     const userExists = await User.findOne({ email });
     if (userExists) {
-        res.sendStatus(403)
+        return res.sendStatus(403)
     } else {
         bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(password, salt, async (err, hash) => {
@@ -76,10 +83,10 @@ authProvider.post('/register', async (req, res) => {
 
                     const { iat, exp } = jwt.decode(token);
                     // Respond with token
-                    res.status(201).json({ iat, exp, token });
+                    return res.status(201).json({ iat, exp, token });
                 } catch (err) {
                     console.log(err)
-                    res.sendStatus(403)
+                    return res.sendStatus(403)
                 }
             });
         });
@@ -101,26 +108,26 @@ authProvider.post('/', async (req, res) => {
 
         const { iat, exp } = jwt.decode(token);
         // Respond with token
-        res.send({ iat, exp, token });
+        return res.send({ iat, exp, token });
 
     } catch (err) {
-        res.sendStatus(403);
+        return res.sendStatus(403);
     }
 });
 
 authProvider.get('/meDetailed', verifyToken, (req, res) => {
-    jwt.verify(req.headers.authorization, 'abcdef', (err, { user }) => {
+    jwt.verify(req.token, 'abcdef', (err, { user }) => {
         if (err) {
-            res.sendStatus(403);
+            return res.sendStatus(403);
         } else {
-            res.json({
+            return res.sendStatus(200).json({
                 user
             });
         }
     });
 })
 
-module.exports = authProvider;
+export default authProvider;
         
 `
         getFileAndUpdateContent.updateRouteText(`${folderDirectory}/server/src/routes/index.js`, 'auth')

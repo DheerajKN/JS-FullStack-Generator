@@ -2,10 +2,10 @@ import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class AddressesService {
-  fetchAll(): any {
+  getAll(): any {
     return [{ address: "New York" }, { address: "Chicago" }];
   }
-  singluarFetch(id): any {
+  getSingular(id): any {
     return { id };
   }
 }
