@@ -1,4 +1,4 @@
-const createFileWithContent = require('./createFileAndAddContent')
+const {createFileWithContent} = require('./createFileAndAddContent')
 const shell = require('shelljs')
 const getFileAndUpdateContent = require('./getRouteFileAndUpdateContent')
 
@@ -48,7 +48,7 @@ exports.verifyToken = (req, res, next) => {
     }
 }`
 
-        createFileWithContent.createFileWithContent(`${folderDirectory}/server/src/auth.js`, fileContent)
+        createFileWithContent(`${folderDirectory}/server/src/auth.js`, fileContent)
 
         const authFileContent = `import bcrypt from 'bcryptjs';
 import { Router } from 'express';
@@ -131,7 +131,7 @@ export default authProvider;
         
 `
         getFileAndUpdateContent.updateRouteText(`${folderDirectory}/server/src/routes/index.js`, 'auth')
-            .then(() => createFileWithContent.createFileWithContent(`${folderDirectory}/server/src/controller/authController.js`, authFileContent))
+            .then(() => createFileWithContent(`${folderDirectory}/server/src/controller/authController.js`, authFileContent))
             .catch((err) => console.log(err));
     });
 }

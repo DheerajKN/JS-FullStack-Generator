@@ -1,4 +1,4 @@
-const createFileWithContent = require('./createFileAndAddContent')
+const {createFileWithContent} = require('./createFileAndAddContent')
 const shell = require('shelljs')
 const fs = require('fs');
 
@@ -32,7 +32,7 @@ const UserSchema = new Schema({
 
 export default mongoose.model("User", UserSchema);`
 
-            createFileWithContent.createFileWithContent(folderDirectory + '/server/src/models/User.js', userSchema)
+            createFileWithContent(folderDirectory + '/server/src/models/User.js', userSchema)
 
         }
     })

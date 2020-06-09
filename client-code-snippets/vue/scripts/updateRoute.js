@@ -1,5 +1,5 @@
-const getFileContent = require("../../frontend-helper-functions/getFileContent.js");
-const createFileAndAddContent = require("../../frontend-helper-functions/updateFileContent");
+const {fetchContent} = require("../../frontend-helper-functions/getFileContent.js");
+const {createFileWithContent} = require("../../frontend-helper-functions/updateFileContent");
 const pluralize = require("pluralize");
 const { join } = require("path");
 
@@ -12,7 +12,7 @@ module.exports = (projectDirectory, route) => {
     "routes.js"
   );
   const capitalizedRoute = route.charAt(0).toUpperCase() + route.slice(1);
-  getFileContent.fetchContent(mainRouterFile).then(oldContent => {
+  fetchContent(mainRouterFile).then(oldContent => {
     let newContent = oldContent.replace(
       /export default (.*)/,
       `import ${capitalizedRoute} from "../components/${capitalizedRoute}";
@@ -22,8 +22,8 @@ export default [\n  {
     component: ${capitalizedRoute}
   },`
     );
-    createFileAndAddContent.createFileWithContent(mainRouterFile, newContent);
-    createFileAndAddContent.createFileWithContent(
+    createFileWithContent(mainRouterFile, newContent);
+    createFileWithContent(
       join(
         projectDirectory,
         "client",
@@ -35,12 +35,12 @@ export default [\n  {
     );
 
     const routingFile = join(projectDirectory, 'client', 'src', 'components', 'Hello.vue')
-    getFileContent.fetchContent(routingFile).then(oldContent => {
+    fetchContent(routingFile).then(oldContent => {
       let capitalizedPluralRoute = pluralize(route).charAt(0).toUpperCase() + pluralize(route).slice(1)
       let newContent = oldContent.replace(/<\/router-link>/, `</router-link>\n<router-link to="/${pluralize(route)}">${capitalizedPluralRoute}</router-link>`);
 
 
-      createFileAndAddContent.createFileWithContent(routingFile, newContent);
+      createFileWithContent(routingFile, newContent);
     })
   });
 };

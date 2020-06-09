@@ -1,11 +1,11 @@
 const pluralize = require('pluralize')
 
-const createFileWithContent = require('./createFileAndAddContent');
+const {createFileWithContent} = require('./createFileAndAddContent');
 
 module.exports.createControllerAndService = (fileDirectory, resource) => {
-    createFileWithContent.createFileWithContent(`${fileDirectory}/server/src/controller/${resource}Controller.js`,
+    createFileWithContent(`${fileDirectory}/server/src/controller/${resource}Controller.js`,
         controllerExpressSyntax(resource, pluralize(resource)))
-    createFileWithContent.createFileWithContent(`${fileDirectory}/server/src/service/${resource}Service.js`,
+    createFileWithContent(`${fileDirectory}/server/src/service/${resource}Service.js`,
         serviceExpressSyntax(resource))
 }
 

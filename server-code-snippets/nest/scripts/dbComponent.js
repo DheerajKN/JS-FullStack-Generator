@@ -1,4 +1,4 @@
-const createFileWithContent = require('../../express/scripts/createFileAndAddContent')
+const {createFileWithContent} = require('../../express/scripts/createFileAndAddContent')
 const shell = require('shelljs')
 const fs = require('fs');
 
@@ -35,7 +35,7 @@ export const UserSchema = new mongoose.Schema({
     },
 });`
 
-        createFileWithContent.createFileWithContent(folderDirectory + '/server/src/user/user.schema.ts', userSchema)
+        createFileWithContent(folderDirectory + '/server/src/user/user.schema.ts', userSchema)
 
         let processedFile = `${folderDirectory}/server/src/user/user.module.ts`
         if (fs.existsSync(processedFile)) {
