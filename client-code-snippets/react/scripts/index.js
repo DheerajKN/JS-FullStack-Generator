@@ -9,7 +9,7 @@ module.exports = (argument, folderDirectory) => {
     //Styling Dependencies
     exec('npm i -D css-loader style-loader html-loader file-loader')
     //Webpack, Execution Dependencies
-    exec('npm i -D npm-run-all clean-webpack-plugin html-webpack-plugin nodemon webpack-assets-manifest webpack webpack-dev-server webpack-cli')
+    exec('npm i -D npm-run-all clean-webpack-plugin html-webpack-plugin nodemon webpack-assets-manifest@^3.1.0 webpack@^4.29.6 webpack-dev-server@3.3.0 webpack-cli@^3.3.0')
     //Electron Dependencies
     exec('npm i electron-is-dev && npm i -D electron electron-builder concurrently cross-env wait-on')
 
